@@ -1,0 +1,13 @@
+management:
+  endpoint:
+    health:
+      roles: ADMIN
+      show-details: when_authorized
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - beans
+          - metrics
