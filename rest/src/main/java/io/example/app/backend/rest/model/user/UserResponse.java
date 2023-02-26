@@ -1,4 +1,16 @@
 package io.example.app.backend.rest.model.user;
 
-public class UserResponse {
+import lombok.*;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@Getter
+@Setter
+@ToString
+public class UserDTO {
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String email;
 }

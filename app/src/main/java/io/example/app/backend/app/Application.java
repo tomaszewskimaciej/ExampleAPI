@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @SpringBootApplication
 @ComponentScan({"io.example.app"})
 @EntityScan("io.example.app.backend.integration.entity")
-@EnableJpaRepositories()
+@EnableJpaRepositories("io.example.app.backend.integration.repository")
 public class Application {
 
     public static void main(String[] args) {

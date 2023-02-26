@@ -14,10 +14,6 @@ public class UserEntityService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
-    }
-
     public User getUserById(int id) {
         return userRepository.findById(id).get();
     }

@@ -14,9 +14,6 @@ public class TaskEntityService {
         this.repository = repository;
     }
 
-    public List<Task> getAllAccounts() {
-        return repository.findAll();
-    }
 
     public Task getTaskById(int id) {
         return repository.findById(id).get();

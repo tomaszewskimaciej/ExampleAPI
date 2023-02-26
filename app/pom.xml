@@ -9,20 +9,20 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>io.fantasy.bank.backend</groupId>
+    <groupId>io.example.app.backend</groupId>
     <artifactId>app</artifactId>
     <packaging>war</packaging>
-    <name>Fantasy :: app</name>
+    <name>Example :: app</name>
 
     <dependencies>
         <dependency>
-            <groupId>io.fantasy.bank.backend</groupId>
+            <groupId>io.example.app.backend</groupId>
             <artifactId>integration</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>io.fantasy.bank.backend</groupId>
+            <groupId>io.example.app.backend</groupId>
             <artifactId>rest</artifactId>
             <version>${project.version}</version>
         </dependency>
