@@ -15,7 +15,7 @@ public class TaskRestService {
         this.adapter = adapter;
     }
 
-    public TaskResponse search(Integer id){
+    public TaskResponse search(Integer id) {
         return adapter.search(id);
     }
 
@@ -23,8 +23,8 @@ public class TaskRestService {
         return adapter.createTask(taskRequest);
     }
 
-    public TaskResponse updateTask(TaskRequest taskRequest) {
-        return adapter.updateTask(taskRequest);
+    public TaskResponse updateTask(Integer id, TaskRequest taskRequest) {
+        return adapter.updateTask(id, taskRequest);
     }
 
     public void deleteTask(Integer id) {

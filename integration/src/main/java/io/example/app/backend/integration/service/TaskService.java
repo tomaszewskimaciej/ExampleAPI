@@ -33,15 +33,23 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public Task update(Task task) {
-        return taskRepository.save(task);
+    public Task update(Integer id, Task task) {
+        Task taskToBeUpdated = taskRepository.findById(id)
+                .orElseThrow(()->new ExampleAppException(ExampleAppErrorType.EA_005));
+
+        taskToBeUpdated.setTitle(task.getTitle());
+        taskToBeUpdated.setDescription(task.getDescription());
+        taskToBeUpdated.setStatus(task.getStatus());
+        taskToBeUpdated.setFinishDate(task.getFinishDate());
+        taskToBeUpdated.setUsers(task.getUsers());
+
+        return taskRepository.save(taskToBeUpdated);
     }
 
     public void delete(Integer id) {
-        if (id != null) {
-            taskRepository.deleteById(id);
-        }
-        throw new ExampleAppException(ExampleAppErrorType.EA_001);
+        Task taskToBeDeleted = taskRepository.findById(id)
+                .orElseThrow(()->new ExampleAppException(ExampleAppErrorType.EA_005));
+        taskRepository.delete(taskToBeDeleted);
     }
 
     public Task changeStatus(Integer id, TaskStatusType status) throws ExampleAppException {

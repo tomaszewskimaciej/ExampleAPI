@@ -37,10 +37,6 @@ public class Task {
     @Column(nullable = false)
     private LocalDate finishDate;
 
-//    @OneToMany
-//    @JoinColumn(name = "user_id", referencedColumnName = "id")
-//    private List<User> users;
-
     @ManyToMany
     @JoinTable(name = "task_user",
             joinColumns = @JoinColumn(name = "task_id"),

@@ -10,7 +10,7 @@ public interface TaskServiceAdapter {
 
     TaskResponse createTask(TaskRequest taskRequest);
 
-    TaskResponse updateTask(TaskRequest taskRequest);
+    TaskResponse updateTask(Integer id, TaskRequest taskRequest);
 
     void deleteTask(Integer id);
 
