@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class TaskService {
@@ -64,14 +65,15 @@ public class TaskService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ExampleAppException(ExampleAppErrorType.EA_004));
 
-        List<User> assignedUsers = task.getUsers();
-        if (assignedUsers == null) {
-            assignedUsers = new ArrayList<>();
-        }
+        Set<User> assignedUsers = task.getUsers();
         assignedUsers.add(user);
         task.setUsers(assignedUsers);
 
         return taskRepository.save(task);
+    }
+
+    public Task findone(Integer id){
+        return taskRepository.findById(id).orElseThrow();
     }
 }
 

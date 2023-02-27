@@ -1,11 +1,13 @@
 package io.example.app.backend.rest.model.task;
 
 import io.example.app.backend.common.type.TaskStatusType;
+import io.example.app.backend.rest.model.user.UserResponse;
 import lombok.*;
 import org.apache.catalina.User;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -20,5 +22,5 @@ public class TaskResponse {
     private String description;
     private TaskStatusType status;
     private LocalDate finishDate;
-    private List<User> users;
+    private Set<UserResponse> users;
 }

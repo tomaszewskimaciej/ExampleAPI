@@ -15,6 +15,10 @@ public class TaskRestService {
         this.adapter = adapter;
     }
 
+    public TaskResponse search(Integer id){
+        return adapter.search(id);
+    }
+
     public TaskResponse createTask(TaskRequest taskRequest) {
         return adapter.createTask(taskRequest);
     }

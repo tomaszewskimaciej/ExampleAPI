@@ -9,7 +9,6 @@ import lombok.*;
 @Setter
 @ToString
 public class UserRequest {
-    private Integer id;
     private String firstName;
     private String lastName;
     private String email;

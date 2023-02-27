@@ -6,6 +6,8 @@ import io.example.app.backend.rest.model.task.TaskResponse;
 
 public interface TaskServiceAdapter {
 
+    TaskResponse search(Integer id);
+
     TaskResponse createTask(TaskRequest taskRequest);
 
     TaskResponse updateTask(TaskRequest taskRequest);

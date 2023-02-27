@@ -22,6 +22,12 @@ public class TaskServiceAdapterImp implements TaskServiceAdapter {
     }
 
     @Override
+    public TaskResponse search(Integer id) {
+        Task task = service.findone(id);
+        return mapper.taskToTaskResponse(task);
+    }
+
+    @Override
     public TaskResponse createTask(TaskRequest taskRequest) {
         Task task = service.save(mapper.taskRequestToTask(taskRequest));
         return mapper.taskToTaskResponse(task);

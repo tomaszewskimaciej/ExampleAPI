@@ -8,7 +8,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -35,7 +37,13 @@ public class Task {
     @Column(nullable = false)
     private LocalDate finishDate;
 
-    @OneToMany
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private List<User> users;
+//    @OneToMany
+//    @JoinColumn(name = "user_id", referencedColumnName = "id")
+//    private List<User> users;
+
+    @ManyToMany
+    @JoinTable(name = "task_user",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> users = new HashSet<>();
 }

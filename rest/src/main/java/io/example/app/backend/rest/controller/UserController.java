@@ -30,7 +30,7 @@ public class UserController {
         service.deleteUser(id);
 
         return ResponseEntity
-                .status(HttpStatus.NO_CONTENT)
+                .status(HttpStatus.ACCEPTED)
                 .build();
     }
 }

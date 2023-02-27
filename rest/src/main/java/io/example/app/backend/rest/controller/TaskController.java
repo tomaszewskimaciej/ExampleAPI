@@ -17,6 +17,14 @@ public class TaskController {
 
     private final TaskRestService service;
 
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskResponse> search(@PathVariable("id") Integer id){
+        TaskResponse taskResponse = service.search(id);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(taskResponse);
+    }
+
     @PostMapping
     public ResponseEntity<TaskResponse> createTask(@RequestBody TaskRequest taskRequest) {
         TaskResponse taskResponse = service.createTask(taskRequest);

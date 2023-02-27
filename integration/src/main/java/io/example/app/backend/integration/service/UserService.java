@@ -24,9 +24,8 @@ public class UserService {
     }
 
     public void delete(Integer id) {
-        if (id != null) {
-            userRepository.deleteById(id);
-        }
-        throw new ExampleAppException(ExampleAppErrorType.EA_001);
+        User userToBeDeleted = userRepository.findById(id)
+                .orElseThrow(() -> new ExampleAppException(ExampleAppErrorType.EA_001));
+        userRepository.delete(userToBeDeleted);
     }
 }
