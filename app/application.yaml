@@ -1,13 +1,24 @@
-management:
-  endpoint:
-    health:
-      roles: ADMIN
-      show-details: when_authorized
-  endpoints:
-    web:
-      exposure:
-        include:
-          - health
-          - info
-          - beans
-          - metrics
+#management:
+#  endpoint:
+#    health:
+#      roles: ADMIN
+#      show-details: when_authorized
+#  endpoints:
+#    web:
+#      exposure:
+#        include:
+#          - health
+#          - info
+#          - beans
+#          - metrics
+server:
+  port: 8082
+debug: true
+
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          client:
+            RestTemplate: DEBUG

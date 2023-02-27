@@ -9,9 +9,16 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>io.example.app.backend.</groupId>
+    <groupId>io.example.app.backend</groupId>
     <artifactId>common</artifactId>
     <packaging>jar</packaging>
     <name>Example :: common</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

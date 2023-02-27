@@ -8,7 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Getter
@@ -36,6 +36,6 @@ public class Task {
     private LocalDate finishDate;
 
     @OneToMany
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = true)
-    private Set<User> users;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private List<User> users;
 }

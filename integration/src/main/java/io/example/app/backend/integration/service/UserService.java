@@ -1,16 +1,16 @@
 package io.example.app.backend.integration.service;
 
+import io.example.app.backend.common.exception.ExampleAppException;
+import io.example.app.backend.common.exception.type.ExampleAppErrorType;
 import io.example.app.backend.integration.entity.User;
 import io.example.app.backend.integration.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
-public class UserEntityService {
+public class UserService {
     UserRepository userRepository;
 
-    public UserEntityService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
@@ -18,11 +18,15 @@ public class UserEntityService {
         return userRepository.findById(id).get();
     }
 
-    public void saveOrUpdate(User user) {
-        userRepository.save(user);
+    public User save(User user) {
+        return userRepository.save(user);
+        //exception catcher needed
     }
 
-    public void delete(int id) {
-        userRepository.deleteById(id);
+    public void delete(Integer id) {
+        if (id != null) {
+            userRepository.deleteById(id);
+        }
+        throw new ExampleAppException(ExampleAppErrorType.EA_001);
     }
 }

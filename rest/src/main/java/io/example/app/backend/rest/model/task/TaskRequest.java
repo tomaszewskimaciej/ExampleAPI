@@ -5,7 +5,7 @@ import lombok.*;
 import org.apache.catalina.User;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,12 +13,10 @@ import java.util.List;
 @Getter
 @Setter
 @ToString
-public class TaskResponse {
-
+public class TaskRequest {
     private Integer id;
     private String title;
     private String description;
     private TaskStatusType status;
     private LocalDate finishDate;
-    private List<User> users;
 }

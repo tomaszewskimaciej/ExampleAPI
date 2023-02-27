@@ -1,0 +1,2 @@
+INSERT INTO FB_USER(first_name, last_name, email) VALUES ('Maciej','Tomaszewski','maciej@tomaszewski.net');
+INSERT INTO FB_TASK(title, description, status, finish_date) VALUES ('Java','Short one', 'OPEN', '2023-03-01');
