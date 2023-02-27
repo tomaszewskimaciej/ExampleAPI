@@ -8,6 +8,9 @@ import io.example.app.backend.rest.model.user.UserResponse;
 import io.example.app.backend.rest.service.adapter.UserServiceAdapter;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class UserServiceAdapterImp implements UserServiceAdapter {
 
@@ -21,8 +24,18 @@ public class UserServiceAdapterImp implements UserServiceAdapter {
     }
 
     @Override
+    public List<UserResponse> searchUsers(String search) {
+        List<User> userList = service.searchUsers(search);
+        List<UserResponse> userResponseList = new ArrayList<>();
+        for (User user : userList) {
+            userResponseList.add(mapper.userToUserResponse(user));
+        }
+        return userResponseList;
+    }
+
+    @Override
     public UserResponse createUser(UserRequest userRequest) {
-        User  user = service.save(mapper.userRequestToUser(userRequest));
+        User user = service.save(mapper.userRequestToUser(userRequest));
 
         return mapper.userToUserResponse(user);
     }

@@ -2,13 +2,15 @@ package io.example.app.backend.integration.adapter;
 
 import io.example.app.backend.common.type.TaskStatusType;
 import io.example.app.backend.integration.entity.Task;
-import io.example.app.backend.integration.entity.User;
 import io.example.app.backend.integration.mapper.TaskMapper;
 import io.example.app.backend.integration.service.TaskService;
 import io.example.app.backend.rest.model.task.TaskRequest;
 import io.example.app.backend.rest.model.task.TaskResponse;
 import io.example.app.backend.rest.service.adapter.TaskServiceAdapter;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TaskServiceAdapterImp implements TaskServiceAdapter {
@@ -22,8 +24,18 @@ public class TaskServiceAdapterImp implements TaskServiceAdapter {
     }
 
     @Override
+    public List<TaskResponse> searchTasks(String search) {
+        List<Task> taskList = service.searchTasks(search);
+        List<TaskResponse> taskResponseList = new ArrayList<>();
+        for (Task task : taskList) {
+            taskResponseList.add(mapper.taskToTaskResponse(task));
+        }
+        return taskResponseList;
+    }
+
+    @Override
     public TaskResponse search(Integer id) {
-        Task task = service.findone(id);
+        Task task = service.findById(id);
         return mapper.taskToTaskResponse(task);
     }
 

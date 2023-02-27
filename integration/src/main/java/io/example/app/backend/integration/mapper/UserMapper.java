@@ -6,6 +6,8 @@ import io.example.app.backend.rest.model.user.UserResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface UserMapper {
     UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
@@ -13,4 +15,5 @@ public interface UserMapper {
     UserResponse userToUserResponse(User user);
 
     User userRequestToUser(UserRequest userRequest);
+
 }

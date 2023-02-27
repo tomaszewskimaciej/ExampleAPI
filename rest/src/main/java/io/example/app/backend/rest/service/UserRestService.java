@@ -5,6 +5,8 @@ import io.example.app.backend.rest.model.user.UserResponse;
 import io.example.app.backend.rest.service.adapter.UserServiceAdapter;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserRestService {
     private final UserServiceAdapter adapter;
@@ -13,11 +15,15 @@ public class UserRestService {
         this.adapter = adapter;
     }
 
-    public UserResponse createUser(UserRequest userRequest){
+    public List<UserResponse> searchUsers(String search) {
+        return adapter.searchUsers(search);
+    }
+
+    public UserResponse createUser(UserRequest userRequest) {
         return adapter.createUser(userRequest);
     }
 
-    public void deleteUser(Integer id){
+    public void deleteUser(Integer id) {
         adapter.deleteUser(id);
     }
 }

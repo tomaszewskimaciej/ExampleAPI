@@ -9,12 +9,23 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(RestApiVersion.version + "/user")
 public class UserController {
 
     private final UserRestService service;
+
+    @GetMapping
+    public ResponseEntity<List<UserResponse>> searchUsers(@RequestParam(name = "search", required = false) String search) {
+        List<UserResponse> userResponse = service.searchUsers(search);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userResponse);
+    }
 
     @PostMapping
     public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {

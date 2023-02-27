@@ -6,6 +6,8 @@ import io.example.app.backend.rest.model.task.TaskResponse;
 import io.example.app.backend.rest.service.adapter.TaskServiceAdapter;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskRestService {
 
@@ -13,6 +15,10 @@ public class TaskRestService {
 
     public TaskRestService(TaskServiceAdapter adapter) {
         this.adapter = adapter;
+    }
+
+    public List<TaskResponse> searchTasks(String search) {
+        return adapter.searchTasks(search);
     }
 
     public TaskResponse search(Integer id) {

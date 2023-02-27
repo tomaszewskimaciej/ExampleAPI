@@ -14,7 +14,14 @@
     <packaging>jar</packaging>
     <name>Example :: rest</name>
 
+
     <dependencies>
+
+        <dependency>
+            <groupId>com.sipios</groupId>
+            <artifactId>spring-search</artifactId>
+            <version>0.2.0</version>
+        </dependency>
 
         <dependency>
             <groupId>io.example.app.backend</groupId>
@@ -26,5 +33,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
     </dependencies>
+
 </project>

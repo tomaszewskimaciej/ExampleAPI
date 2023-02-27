@@ -4,7 +4,11 @@ import io.example.app.backend.common.type.TaskStatusType;
 import io.example.app.backend.rest.model.task.TaskRequest;
 import io.example.app.backend.rest.model.task.TaskResponse;
 
+import java.util.List;
+
 public interface TaskServiceAdapter {
+
+    List<TaskResponse> searchTasks(String search);
 
     TaskResponse search(Integer id);
 

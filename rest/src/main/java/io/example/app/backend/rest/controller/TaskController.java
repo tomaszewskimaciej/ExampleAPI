@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(RestApiVersion.version + "/task")
@@ -17,9 +19,19 @@ public class TaskController {
 
     private final TaskRestService service;
 
+    @GetMapping
+    public ResponseEntity<List<TaskResponse>> searchTasks(@RequestParam(name = "search", required = false) String search) {
+        List<TaskResponse> taskResponses = service.searchTasks(search);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(taskResponses);
+    }
+
     @GetMapping("/{id}")
-    public ResponseEntity<TaskResponse> search(@PathVariable("id") Integer id){
+    public ResponseEntity<TaskResponse> search(@PathVariable("id") Integer id) {
         TaskResponse taskResponse = service.search(id);
+
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(taskResponse);
