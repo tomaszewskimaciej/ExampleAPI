@@ -5,59 +5,33 @@ import io.example.app.backend.common.exception.type.ExampleAppErrorType;
 import io.example.app.backend.common.type.TaskStatusType;
 import io.example.app.backend.integration.entity.Task;
 import io.example.app.backend.integration.entity.User;
+import io.example.app.backend.integration.filter.PerformSearch;
 import io.example.app.backend.integration.repository.TaskRepository;
 import io.example.app.backend.integration.repository.UserRepository;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class TaskService {
     private TaskRepository taskRepository;
     private UserRepository userRepository;
+    private final PerformSearch performSearch;
 
-    public TaskService(TaskRepository repository, UserRepository userRepository) {
+    public TaskService(TaskRepository repository, UserRepository userRepository, PerformSearch performSearch) {
         this.taskRepository = repository;
         this.userRepository = userRepository;
+        this.performSearch = performSearch;
     }
 
     public List<Task> searchTasks(String search) {
-        Specification<Task> spec = Specification.where(null);
-        if (search != null && !search.isEmpty()) {
-            String[] criteria = search.split(",");
-            for (String criterion : criteria) {
-                String[] parts = criterion.split(":");
-                if (parts.length == 2) {
-                    String propertyName = parts[0];
-                    String value = parts[1];
-                    spec = spec.and((root, query, builder) -> {
-                        if (propertyName.contains(">")) {
-                            String[] propParts = propertyName.split(">");
-                            return builder.greaterThan(root.get(propParts[0]), value);
-                        } else if (propertyName.contains("<")) {
-                            String[] propParts = propertyName.split("<");
-                            return builder.lessThan(root.get(propParts[0]), value);
-                        } else {
-                            return builder.equal(root.get(propertyName), value);
-                        }
-                    });
-                }
-            }
-        }
-
-        return taskRepository.findAll(spec);
+        return performSearch.searchEntities(taskRepository, search);
     }
 
-    public Task findById(Integer id) {
+    public Task getTaskById(Integer id) {
         return taskRepository.findById(id)
                 .orElseThrow(() -> new ExampleAppException(ExampleAppErrorType.EA_003));
-    }
-
-    public Optional<Task> getTaskById(Integer id) {
-        return taskRepository.findById(id);
     }
 
     public Task save(Task task) {
@@ -88,7 +62,7 @@ public class TaskService {
         if (id == null) {
             throw new ExampleAppException(ExampleAppErrorType.EA_001);
         }
-        Task taskToBeUpdated = getTaskById(id)
+        Task taskToBeUpdated = taskRepository.findById(id)
                 .orElseThrow(() -> new ExampleAppException(ExampleAppErrorType.EA_003));
         taskToBeUpdated.setStatus(status);
 

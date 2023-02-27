@@ -21,8 +21,8 @@ public class TaskRestService {
         return adapter.searchTasks(search);
     }
 
-    public TaskResponse search(Integer id) {
-        return adapter.search(id);
+    public TaskResponse getTaskById(Integer id) {
+        return adapter.getTaskById(id);
     }
 
     public TaskResponse createTask(TaskRequest taskRequest) {

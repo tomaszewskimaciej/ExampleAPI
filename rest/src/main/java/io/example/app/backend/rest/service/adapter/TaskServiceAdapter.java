@@ -10,7 +10,7 @@ public interface TaskServiceAdapter {
 
     List<TaskResponse> searchTasks(String search);
 
-    TaskResponse search(Integer id);
+    TaskResponse getTaskById(Integer id);
 
     TaskResponse createTask(TaskRequest taskRequest);
 

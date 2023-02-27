@@ -34,8 +34,8 @@ public class TaskServiceAdapterImp implements TaskServiceAdapter {
     }
 
     @Override
-    public TaskResponse search(Integer id) {
-        Task task = service.findById(id);
+    public TaskResponse getTaskById(Integer id) {
+        Task task = service.getTaskById(id);
         return mapper.taskToTaskResponse(task);
     }
 

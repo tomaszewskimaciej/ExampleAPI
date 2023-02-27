@@ -29,8 +29,8 @@ public class TaskController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<TaskResponse> search(@PathVariable("id") Integer id) {
-        TaskResponse taskResponse = service.search(id);
+    public ResponseEntity<TaskResponse> getTaskById(@PathVariable("id") Integer id) {
+        TaskResponse taskResponse = service.getTaskById(id);
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -65,8 +65,8 @@ public class TaskController {
                 .build();
     }
 
-    @PutMapping("/change-status/{id}/{status}")
-    public ResponseEntity<TaskResponse> changeStatus(@PathVariable("id") Integer id,
+    @PutMapping("/change-status/{taskId}/{status}")
+    public ResponseEntity<TaskResponse> changeStatus(@PathVariable("taskId") Integer id,
                                                      @PathVariable("status") TaskStatusType statusType) {
         TaskResponse taskResponse = service.changeStatus(id, statusType);
 
