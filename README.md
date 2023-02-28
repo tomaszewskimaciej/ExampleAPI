@@ -129,5 +129,5 @@ Example body:
 - #### Assign user to task
 
 ```http
-  PUT http://localhost:8080/v1/task/2
+  PUT http://localhost:8080/v1/task/assign-user/3/2
 ```
