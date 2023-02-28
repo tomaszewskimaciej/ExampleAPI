@@ -9,6 +9,8 @@ public interface UserServiceAdapter {
 
     List<UserResponse> searchUsers(String search);
 
+    public UserResponse getUserById(Integer id);
+
     UserResponse createUser(UserRequest userRequest);
 
     void deleteUser(Integer id);

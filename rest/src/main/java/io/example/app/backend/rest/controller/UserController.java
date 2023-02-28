@@ -27,6 +27,15 @@ public class UserController {
                 .body(userResponse);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserResponse> getUserById(@PathVariable("id") Integer id) {
+        UserResponse userResponse = service.getUserById(id);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userResponse);
+    }
+
     @PostMapping
     public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
         UserResponse userResponse = service.createUser(userRequest);
@@ -36,12 +45,12 @@ public class UserController {
                 .body(userResponse);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable("id") Integer id) {
         service.deleteUser(id);
 
         return ResponseEntity
-                .status(HttpStatus.ACCEPTED)
+                .status(HttpStatus.NO_CONTENT)
                 .build();
     }
 }

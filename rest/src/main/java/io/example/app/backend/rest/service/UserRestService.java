@@ -1,5 +1,6 @@
 package io.example.app.backend.rest.service;
 
+import io.example.app.backend.rest.model.task.TaskResponse;
 import io.example.app.backend.rest.model.user.UserRequest;
 import io.example.app.backend.rest.model.user.UserResponse;
 import io.example.app.backend.rest.service.adapter.UserServiceAdapter;
@@ -18,6 +19,11 @@ public class UserRestService {
     public List<UserResponse> searchUsers(String search) {
         return adapter.searchUsers(search);
     }
+
+    public UserResponse getUserById(Integer id) {
+        return adapter.getUserById(id);
+    }
+
 
     public UserResponse createUser(UserRequest userRequest) {
         return adapter.createUser(userRequest);

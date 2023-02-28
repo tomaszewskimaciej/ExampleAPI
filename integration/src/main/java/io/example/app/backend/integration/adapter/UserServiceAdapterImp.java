@@ -34,6 +34,12 @@ public class UserServiceAdapterImp implements UserServiceAdapter {
     }
 
     @Override
+    public UserResponse getUserById(Integer id) {
+        User user = service.getUserById(id);
+        return mapper.userToUserResponse(user);
+    }
+
+    @Override
     public UserResponse createUser(UserRequest userRequest) {
         User user = service.save(mapper.userRequestToUser(userRequest));
 
