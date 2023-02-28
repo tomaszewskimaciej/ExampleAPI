@@ -56,7 +56,6 @@ class UserRestServiceTest {
     }
 
 
-
     public static UserResponse exampleUserResponse() {
         return new UserResponse(1, "Maciek", "Tom", "MaciekTom@gmail.com");
     }

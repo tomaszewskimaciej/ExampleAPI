@@ -3,10 +3,10 @@ package io.example.app.backend.integration.mapper;
 import io.example.app.backend.integration.entity.User;
 import io.example.app.backend.rest.model.user.UserRequest;
 import io.example.app.backend.rest.model.user.UserResponse;
+import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.mapstruct.factory.Mappers;
-
-import java.util.List;
 
 @Mapper
 public interface UserMapper {
@@ -16,4 +16,8 @@ public interface UserMapper {
 
     User userRequestToUser(UserRequest userRequest);
 
+    @AfterMapping
+    default void afterUserToUserResponseMapping(@MappingTarget UserResponse userResponse) {
+        userResponse.addLink();
+    }
 }

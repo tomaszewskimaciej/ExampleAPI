@@ -1,16 +1,14 @@
 package io.example.app.backend.rest.service;
 
 import io.example.app.backend.rest.model.task.TaskResponse;
-import io.example.app.backend.rest.model.user.UserResponse;
 import io.example.app.backend.rest.service.adapter.TaskServiceAdapter;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.times;
