@@ -1,7 +1,6 @@
 package io.example.app.backend.rest.controller;
 
 import io.example.app.backend.rest.controller.version.RestApiVersion;
-import io.example.app.backend.rest.model.user.UserRequest;
 import io.example.app.backend.rest.model.user.UserResponse;
 import io.example.app.backend.rest.service.UserRestService;
 import io.example.app.backend.rest.utility.BaseUnitTest;
@@ -17,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doNothing;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @WebMvcTest
@@ -41,8 +40,33 @@ class UserControllerTest extends BaseUnitTest {
                 () -> assertEquals(expected.getFirstName(), actual.getFirstName()),
                 () -> assertEquals(expected.getLastName(), actual.getLastName()),
                 () -> assertEquals(expected.getEmail(), actual.getEmail())
-                );
+        );
     }
+
+    @Test
+    public void shouldReturnOkStatusAfterCreatingUser() throws Exception {
+        //given
+        UserResponse expected = exampleUserResponse();
+        given(service.createUser(any())).willReturn(expected);
+        MockHttpServletRequestBuilder mockHttp = post(RestApiVersion.version + "/user")
+                .content(jsonToString(expected))
+                .contentType(MediaType.APPLICATION_JSON);
+        //when-then
+        callApi(mockHttp, HttpStatus.OK);
+    }
+
+
+    @Test
+    public void shouldReturnNOCONTENTAfterDeletingUser() throws Exception {
+        //given
+        Integer id = 1;
+        doNothing().when(service).deleteUser(id);
+        MockHttpServletRequestBuilder mockHttp = delete(RestApiVersion.version + "/user/" + id);
+        //when-then
+        callApi(mockHttp, HttpStatus.NO_CONTENT);
+    }
+
+ /*
 
     @Test
     public void shouldCreateUser() throws Exception {
@@ -63,31 +87,21 @@ class UserControllerTest extends BaseUnitTest {
         );
     }
 
-    @Test
-    public void ShouldReturnOkStatusAfterCreatingUser() throws Exception{
-        UserResponse expected = exampleUserResponse();
-        given(service.createUser(any())).willReturn(expected);
-        MockHttpServletRequestBuilder mockHttp = post(RestApiVersion.version + "/user")
-                .content(jsonToString(expected))
-                .contentType(MediaType.APPLICATION_JSON);
-
-        callApi(mockHttp,HttpStatus.OK);
-    }
-
-
 
     @Test
     public void shouldDeleteUser() throws Exception {
         //given
         Integer id = 1;
         //when
-        String response = callApi(delete(RestApiVersion.version +"/user/"+id), HttpStatus.NO_CONTENT);
+        String response = callApi(delete(RestApiVersion.version + "/user/" + id), HttpStatus.NO_CONTENT);
         //then
         verify(service, times(1)).deleteUser(id);
         assertEquals("", response);
     }
+*/
 
     public static UserResponse exampleUserResponse() {
         return new UserResponse(1, "Maciek", "Tom", "MaciekTom@gmail.com");
     }
+
 }

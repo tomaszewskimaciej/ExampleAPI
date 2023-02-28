@@ -31,8 +31,4 @@ public class User {
 
     @ManyToMany(mappedBy = "users")
     private Set<Task> tasks = new HashSet<>();
-
-//    @OneToOne
-//    @JoinColumn(name = "account_id", referencedColumnName = "id", nullable = false)
-//    private Account account;
 }
