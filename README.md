@@ -131,8 +131,3 @@ Example body:
 ```http
   PUT http://localhost:8080/v1/task/2
 ```
-
-- #### Change status of task
-```http
-  PUT http://localhost:8082/v1/task/assign-user/3/2
-```
