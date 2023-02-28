@@ -2,7 +2,6 @@ package io.example.app.backend.rest.model.task;
 
 import io.example.app.backend.common.type.TaskStatusType;
 import io.example.app.backend.rest.controller.TaskController;
-import io.example.app.backend.rest.controller.UserController;
 import io.example.app.backend.rest.model.user.UserResponse;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
@@ -19,7 +18,6 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @Setter
 @ToString
 public class TaskResponse extends RepresentationModel<TaskResponse> {
-
     private Integer id;
     private String title;
     private String description;
@@ -28,6 +26,6 @@ public class TaskResponse extends RepresentationModel<TaskResponse> {
     private Set<UserResponse> users;
 
     public void addLink() {
-        this.add(linkTo(methodOn(TaskController.class).getTaskById(this.getId())).withSelfRel()) ;
+        this.add(linkTo(methodOn(TaskController.class).getTaskById(this.getId())).withSelfRel());
     }
 }

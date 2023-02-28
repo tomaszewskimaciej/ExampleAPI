@@ -23,7 +23,6 @@ public class UserRestService {
         return adapter.getUserById(id);
     }
 
-
     public UserResponse createUser(UserRequest userRequest) {
         return adapter.createUser(userRequest);
     }

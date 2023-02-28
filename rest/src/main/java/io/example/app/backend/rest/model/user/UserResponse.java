@@ -1,7 +1,6 @@
 package io.example.app.backend.rest.model.user;
 
 import io.example.app.backend.rest.controller.UserController;
-import io.example.app.backend.rest.model.task.TaskResponse;
 import lombok.*;
 import org.springframework.hateoas.RepresentationModel;
 
@@ -20,6 +19,6 @@ public class UserResponse extends RepresentationModel<UserResponse> {
     private String email;
 
     public void addLink() {
-        this.add(linkTo(methodOn(UserController.class).getUserById(this.getId())).withSelfRel()) ;
+        this.add(linkTo(methodOn(UserController.class).getUserById(this.getId())).withSelfRel());
     }
 }
